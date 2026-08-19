@@ -17,6 +17,12 @@ app.use('/sounds', express.static(path.join(__dirname, 'public/sounds')));
 app.use('/stories', require('./routes/stories'));
 
 const PORT = process.env.PORT || 3011;
-app.listen(PORT, () => {
-  console.log(`Aivorah Bedtime Stories service running on http://localhost:${PORT}`);
-});
+// Only start listening when run directly (`node index.js`) — not when
+// required by tests, so Supertest can exercise `app` in-memory.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Aivorah Bedtime Stories service running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

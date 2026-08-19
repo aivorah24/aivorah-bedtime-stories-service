@@ -342,4 +342,8 @@ module.exports = {
   getPageAudio,
   prewarmAll,
   countTotalPages,
+  // Exported for direct unit testing — pure helpers, no behavior change.
+  splitText,
+  storyCacheKey,
+  alignmentToWordTimings,
 };
